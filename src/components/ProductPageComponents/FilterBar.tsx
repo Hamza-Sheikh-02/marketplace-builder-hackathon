@@ -36,7 +36,7 @@ const FilterBar: React.FC = () => {
       <div className="sm:hidden flex w-full justify-between">
         <Dialog>
           <DialogTrigger asChild>
-            <button className="flex items-center space-x-2 text-sm font-medium text-gray-600 hover:text-gray-900 bg-gray-100 dark:text-white px-4 py-2 rounded-lg">
+            <button className="flex items-center space-x-2 text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-white px-4 py-2 rounded-lg">
               <span>Filters</span>
               <FaChevronDown className="text-gray-500 dark:text-white text-xs" />
             </button>
@@ -61,7 +61,7 @@ const FilterBar: React.FC = () => {
 
         <Dialog>
           <DialogTrigger asChild>
-            <button className="flex items-center space-x-2 text-sm font-medium text-gray-600 hover:text-gray-900 bg-gray-100 dark:text-white px-4 py-2 rounded-lg">
+            <button className="flex items-center space-x-2 text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-white px-4 py-2 rounded-lg">
               <span>Sorting</span>
               <FaChevronDown className="text-gray-500 dark:text-white text-xs" />
             </button>
