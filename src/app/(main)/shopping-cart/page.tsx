@@ -13,7 +13,7 @@ const ShoppingCart: React.FC = () => {
   const hasItems = false;
 
   return (
-    <div className="py-10 px-6 md:py-16 md:px-12 flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+    <div className="py-10 px-6 md:py-16 md:px-12 flex items-center justify-center">
       <div className="max-w-[1440px] w-full">
         <Card className="shadow-md">
           <CardHeader>
