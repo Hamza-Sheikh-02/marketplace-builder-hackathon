@@ -1,16 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+
 import React, { useEffect, useState } from "react";
-import { useParams } from "next/navigation"; // To get the dynamic slug from the URL
+import { useParams } from "next/navigation";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/legacy/image";
-import { Button } from "@/components/ui/button"; // ShadCN Button
-import { Input } from "@/components/ui/input"; // ShadCN Input
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/app/redux/cartSlice";
 import BestSelling from "@/components/HomePageComponents/BestSelling";
 import AboutNewsletterSection from "@/components/AboutPageComponents/NewsletterSection";
+import { toast } from "sonner";
+import { IoAddCircle } from "react-icons/io5";
 
-// Function to fetch a product by slug from Sanity
 async function fetchProductBySlug(slug: string) {
   const query = `*[_type == "product" && slug.current == $slug][0]{
     name,
@@ -32,6 +36,9 @@ const ProductPage = () => {
 
   const [product, setProduct] = useState<any | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [quantity, setQuantity] = useState<number>(1);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const loadProduct = async () => {
@@ -60,6 +67,20 @@ const ProductPage = () => {
       </div>
     );
   }
+
+  const handleAddToCart = () => {
+    if (product) {
+      const cartItem = {
+        id: product.slug,
+        title: product.name,
+        description: product.description,
+        price: product.price,
+        image: urlFor(product.image).url(),
+        quantity,
+      };
+      dispatch(addToCart(cartItem));
+    }
+  };
 
   return (
     <>
@@ -112,12 +133,20 @@ const ProductPage = () => {
               type="number"
               id="quantity"
               min="1"
-              defaultValue="1"
+              value={quantity}
+              onChange={(e) => setQuantity(parseInt(e.target.value))}
               className="w-16 border border-gray-300 rounded-md text-center"
             />
           </div>
-
-          <Button className="bg-primary hover:bg-primary/80 text-white py-3 px-6 rounded-lg transition">
+          <Button
+            onClick={() => {
+              handleAddToCart();
+              toast("Item Has Been Successfully Added", {
+                icon: <IoAddCircle />,
+              });
+            }}
+            className="bg-primary hover:bg-primary/80 text-white py-3 px-6 rounded-lg transition"
+          >
             Add to cart
           </Button>
         </div>

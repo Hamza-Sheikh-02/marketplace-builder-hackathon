@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
+import ReduxProvider from "@/components/ReduxProvider";
 
 export const metadata: Metadata = {
   title: "Avion",
@@ -31,10 +32,12 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <Navbar />
-            <Toaster />
-            {children}
-            <Footer />
+            <ReduxProvider>
+              <Navbar />
+              <Toaster />
+              {children}
+              <Footer />
+            </ReduxProvider>
           </ThemeProvider>
         </body>
       </html>

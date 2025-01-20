@@ -20,9 +20,18 @@ import { ChevronsUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeButton from "@/components/theme-button";
 import HeaderTop from "./HeaderTop";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/redux/store";
 
 const Navbar = () => {
   const [isCategoriesOpen, setCategoriesOpen] = useState(false);
+
+  const cartItems = useSelector((state: RootState) => state.cart.items);
+
+  const totalQuantity = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
   return (
     <>
@@ -59,16 +68,19 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="flex items-center gap-4 ml-8">
-            {" "}
-            {/* Add ml-8 to add space between logo and icons */}
             <Button aria-label="Search">
-              <FiSearch className="w-4 h-4 sm:w-5 sm:h-5" />{" "}
-              {/* Reduced icon size */}
+              <FiSearch className="w-4 h-4 sm:w-5 sm:h-5" />
             </Button>
-            <Link href="/shopping-cart" aria-label="Cart">
-              <FiShoppingCart className="w-4 h-4 sm:w-5 sm:h-5" />{" "}
-              {/* Reduced icon size */}
+
+            <Link href="/shopping-cart" className="relative">
+              <FiShoppingCart className="text-2xl cursor-pointer mr-2" />
+              {totalQuantity > 0 && (
+                <span className="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-primary rounded-full">
+                  {totalQuantity}
+                </span>
+              )}
             </Link>
+
             <SignedOut>
               <SignInButton />
             </SignedOut>
