@@ -126,42 +126,63 @@ const Navbar = () => {
                     <CollapsibleContent>
                       <ul className="flex flex-col gap-2 mt-2">
                         <li>
-                          <Link href="products" className="hover:text-primary">
+                          <Link href="/products" className="hover:text-primary">
                             All products
                           </Link>
                         </li>
                         <li>
-                          <Link href="products" className="hover:text-primary">
+                          <Link
+                            href="/products/plant-pots"
+                            className="hover:text-primary"
+                          >
                             Plant pots
                           </Link>
                         </li>
                         <li>
-                          <Link href="products" className="hover:text-primary">
+                          <Link
+                            href="/products/ceramics"
+                            className="hover:text-primary"
+                          >
                             Ceramics
                           </Link>
                         </li>
                         <li>
-                          <Link href="products" className="hover:text-primary">
+                          <Link
+                            href="/products/tables"
+                            className="hover:text-primary"
+                          >
                             Tables
                           </Link>
                         </li>
                         <li>
-                          <Link href="products" className="hover:text-primary">
+                          <Link
+                            href="/products/chairs"
+                            className="hover:text-primary"
+                          >
                             Chairs
                           </Link>
                         </li>
                         <li>
-                          <Link href="products" className="hover:text-primary">
+                          <Link
+                            href="/products/crockory"
+                            className="hover:text-primary"
+                          >
                             Crockery
                           </Link>
                         </li>
                         <li>
-                          <Link href="products" className="hover:text-primary">
+                          <Link
+                            href="/products/tableware"
+                            className="hover:text-primary"
+                          >
                             Tableware
                           </Link>
                         </li>
                         <li>
-                          <Link href="products" className="hover:text-primary">
+                          <Link
+                            href="/products/cutlery"
+                            className="hover:text-primary"
+                          >
                             Cutlery
                           </Link>
                         </li>
@@ -176,42 +197,42 @@ const Navbar = () => {
         <div className="bg-gray-100 dark:bg-gray-900 hidden sm:block">
           <ul className="flex flex-wrap justify-center gap-6 py-3">
             <li>
-              <Link href="products" className="hover:text-primary">
+              <Link href="/products" className="hover:text-primary">
                 All products
               </Link>
             </li>
             <li>
-              <Link href="products" className="hover:text-primary">
+              <Link href="/products/plant-pots" className="hover:text-primary">
                 Plant pots
               </Link>
             </li>
             <li>
-              <Link href="products" className="hover:text-primary">
+              <Link href="/products/ceramics" className="hover:text-primary">
                 Ceramics
               </Link>
             </li>
             <li>
-              <Link href="products" className="hover:text-primary">
+              <Link href="/products/tables" className="hover:text-primary">
                 Tables
               </Link>
             </li>
             <li>
-              <Link href="products" className="hover:text-primary">
+              <Link href="/products/chairs" className="hover:text-primary">
                 Chairs
               </Link>
             </li>
             <li>
-              <Link href="products" className="hover:text-primary">
+              <Link href="/products/crockory" className="hover:text-primary">
                 Crockery
               </Link>
             </li>
             <li>
-              <Link href="products" className="hover:text-primary">
+              <Link href="/products/tableware" className="hover:text-primary">
                 Tableware
               </Link>
             </li>
             <li>
-              <Link href="products" className="hover:text-primary">
+              <Link href="/products/cutlery" className="hover:text-primary">
                 Cutlery
               </Link>
             </li>

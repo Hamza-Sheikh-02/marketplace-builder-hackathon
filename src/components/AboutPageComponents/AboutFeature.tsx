@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -10,7 +10,8 @@ const AboutFeature = () => {
         <Image
           src="/aboutfeature.png"
           alt="Decorative"
-          fill
+          width={750}
+          height={750}
           className="object-cover rounded-lg"
         />
       </Card>

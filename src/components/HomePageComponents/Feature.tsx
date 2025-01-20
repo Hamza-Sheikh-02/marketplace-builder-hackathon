@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -29,7 +29,8 @@ const FeatureSection = () => {
         <Image
           src="/feature.png"
           alt="Furniture"
-          fill
+          width={1000}
+          height={1000}
           className="object-cover rounded-lg"
         />
       </Card>
