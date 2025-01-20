@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
 import ReduxProvider from "@/components/ReduxProvider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Avion",
@@ -38,6 +39,7 @@ export default function RootLayout({
               {children}
               <Footer />
             </ReduxProvider>
+            <SpeedInsights />
           </ThemeProvider>
         </body>
       </html>
