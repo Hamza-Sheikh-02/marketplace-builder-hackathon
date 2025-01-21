@@ -1,11 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// components/ProductGrid.tsx
 "use client";
 import React, { useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
-// import { urlFor } from "@/sanity/lib/image";
-import ProductCard from "./ProductCard"; // Import the ProductCard component
-import { Pagination } from "./Pagination"; // Import the Pagination component
+import ProductCard from "./ProductCard";
+import { Pagination } from "./Pagination";
 import FilterBar from "./FilterBar";
 
 async function fetchProducts() {
@@ -26,7 +24,7 @@ export default function ProductGrid() {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [sortOption, setSortOption] = useState<string>("Date added");
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [itemsPerPage] = useState<number>(8); // Number of items per page
+  const [itemsPerPage] = useState<number>(8);
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -55,7 +53,6 @@ export default function ProductGrid() {
     setSortOption(sortBy);
   };
 
-  // Pagination Logic
   const indexOfLastProduct = currentPage * itemsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
   const currentProducts = sortedProducts().slice(
@@ -63,7 +60,6 @@ export default function ProductGrid() {
     indexOfLastProduct
   );
 
-  // Change Page
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   if (loading) {
