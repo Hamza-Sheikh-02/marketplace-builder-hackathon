@@ -38,15 +38,15 @@ To run the project locally:
 
 1. **Clone the repository**:
 
-   ```bash
+  ```bash
    git clone https://github.com/Hamza-Sheikh-02/marketplace-builder-hackathon.git
-   ```
+  ```
 
 2. **Navigate to the project directory**:
 
-   ```bash
+  ```bash
    cd marketplace-builder-hackathon
-   ```
+  ```
 
 3. **Install dependencies**:
 
