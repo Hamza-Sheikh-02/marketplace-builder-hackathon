@@ -16,7 +16,7 @@ The product listing page dynamically fetches and displays data from the API.
 #### Screenshot:
 ![Product Detail Page](/public/screenshots/product-detail-page.png)
 
-### 3. Filters and Search Bar
+### 3. Filters, Search Bar and Pagination
 - **Filters:** Functional category filters that update the product list dynamically.
 - **Search Bar:** Allows users to search for products by name.
 
@@ -25,6 +25,9 @@ The product listing page dynamically fetches and displays data from the API.
 ![Filters](/public/screenshots/filters.png)
 ##### Search Bar:
 ![Search](/public/screenshots/search.png)
+---
+##### Pagination Bar:
+![Pagination](/public/screenshots/pagination.png)
 ---
 
 ## Code Deliverables
@@ -484,6 +487,49 @@ export default FilterBar;
 
 ```
 
+#### 3. Pagination Component
+```tsx
+"import React from "react";
+
+interface PaginationProps {
+  currentPage: number;
+  itemsPerPage: number;
+  totalItems: number;
+  paginate: (pageNumber: number) => void;
+}
+
+const Pagination: React.FC<PaginationProps> = ({
+  currentPage,
+  itemsPerPage,
+  totalItems,
+  paginate,
+}) => {
+  const pageNumbers = [];
+
+  for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  return (
+    <div className="flex space-x-2">
+      {pageNumbers.map((number) => (
+        <button
+          key={number}
+          onClick={() => paginate(number)}
+          className={`px-4 py-2 border rounded-md ${
+            currentPage === number ? "bg-primary text-white" : "bg-backgorund"
+          }`}
+        >
+          {number}
+        </button>
+      ))}
+    </div>
+  );
+};
+
+export { Pagination };
+```
+
 ---
 
 ### API Integration
@@ -678,7 +724,7 @@ export default ProductPage;
 2. Created reusable components (`ProductCard`, `ProductList`, `SearchBar`).
 3. Integrated API for fetching products and product details.
 4. Implemented dynamic routing for individual product pages.
-5. Added features like category filters and search bar.
+5. Added features like category filters, search bar and pagination.
 
 # Challenges and Solutions
 
