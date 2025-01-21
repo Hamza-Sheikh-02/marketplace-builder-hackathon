@@ -1,17 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+// components/ProductGrid.tsx
 "use client";
 import React, { useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
-import { urlFor } from "@/sanity/lib/image";
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import Image from "next/legacy/image";
-import { useRouter } from "next/navigation";
+// import { urlFor } from "@/sanity/lib/image";
+import ProductCard from "./ProductCard"; // Import the ProductCard component
+import { Pagination } from "./Pagination"; // Import the Pagination component
 import FilterBar from "./FilterBar";
 
 async function fetchProducts() {
@@ -26,59 +20,13 @@ async function fetchProducts() {
   return products;
 }
 
-function ProductCard({ product }: { product: any }) {
-  const imageUrl = product.image ? urlFor(product.image).url() : null;
-  const router = useRouter();
-
-  const handleViewDetails = () => {
-    router.push(`/products/${product.slug}`);
-  };
-
-  return (
-    <Card className="w-full shadow-lg border rounded-lg">
-      <CardHeader className="p-4">
-        {imageUrl ? (
-          <Image
-            src={imageUrl}
-            alt={product.name}
-            width={350}
-            height={350}
-            className="rounded-lg object-cover w-full h-64"
-          />
-        ) : (
-          <div className="h-64 bg-gray-300 rounded-lg flex items-center justify-center">
-            <span>No Image Available</span>
-          </div>
-        )}
-      </CardHeader>
-      <CardContent className="p-4">
-        <h2 className="text-lg font-semibold">{product.name}</h2>
-        <p className="text-lg font-medium text-gray-800 dark:text-gray-400">
-          £ {product.price.toFixed(2)}
-        </p>
-        <p className="text-sm text-green-700">
-          {product.quantity > 0 ? "In Stock" : "Out of Stock"}
-        </p>
-      </CardContent>
-      <CardFooter className="p-4">
-        <Button
-          onClick={handleViewDetails}
-          disabled={!product.quantity || product.quantity === 0}
-        >
-          {product.quantity && product.quantity > 0
-            ? "See Details"
-            : "Out of Stock"}
-        </Button>
-      </CardFooter>
-    </Card>
-  );
-}
-
 export default function ProductGrid() {
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [sortOption, setSortOption] = useState<string>("Date added");
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [itemsPerPage] = useState<number>(8); // Number of items per page
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -106,6 +54,17 @@ export default function ProductGrid() {
   const handleSortChange = (sortBy: string) => {
     setSortOption(sortBy);
   };
+
+  // Pagination Logic
+  const indexOfLastProduct = currentPage * itemsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
+  const currentProducts = sortedProducts().slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  // Change Page
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   if (loading) {
     return (
@@ -145,8 +104,8 @@ export default function ProductGrid() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-4">
-          {sortedProducts().length > 0 ? (
-            sortedProducts().map((product, index) => (
+          {currentProducts.length > 0 ? (
+            currentProducts.map((product, index) => (
               <ProductCard key={index} product={product} />
             ))
           ) : (
@@ -156,6 +115,15 @@ export default function ProductGrid() {
               </p>
             </div>
           )}
+        </div>
+
+        <div className="flex justify-center mt-8">
+          <Pagination
+            currentPage={currentPage}
+            itemsPerPage={itemsPerPage}
+            totalItems={filteredProducts.length}
+            paginate={paginate}
+          />
         </div>
       </div>
     </>
