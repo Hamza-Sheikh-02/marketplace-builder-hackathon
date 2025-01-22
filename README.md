@@ -13,7 +13,6 @@ The repository is organized as follows:
 - **`sanity-migration/`**: Includes scripts and configurations for migrating and managing the Sanity content schema.
 
 - **`src/`**: The main source code directory, structured as follows:
-
   - **`app/`**: Contains the Next.js application pages and components.
   - **`components/`**: Reusable React components used throughout the application.
 
@@ -39,26 +38,26 @@ To run the project locally:
 
 1. **Clone the repository**:
 
-```bash
- git clone https://github.com/Hamza-Sheikh-02/marketplace-builder-hackathon.git
-```
+  ```bash
+   git clone https://github.com/Hamza-Sheikh-02/marketplace-builder-hackathon.git
+  ```
 
 2. **Navigate to the project directory**:
 
-```bash
- cd marketplace-builder-hackathon
-```
+  ```bash
+   cd marketplace-builder-hackathon
+  ```
 
 3. **Install dependencies**:
 
-```bash
- npm install
-```
+  ```bash
+   npm install
+  ```
 
 4. **Start the development server**:
 
-```bash
- npm run dev
-```
+  ```bash
+   npm run dev
+  ```
 
 **Open your browser and visit: http://localhost:3000**
